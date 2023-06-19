@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="StylizedTreeProject"
+run/main_scene="res://Scenes/main_scene.tscn"
+config/features=PackedStringArray("4.0", "Forward Plus")
+config/icon="res://icon.svg"
+
+[shader_globals]
+
+WindSpeed={
+"type": "float",
+"value": 5.0
+}
+WindScale={
+"type": "float",
+"value": 1.01
+}
+WindStrength={
+"type": "float",
+"value": 8.0
+}
+WindDensity={
+"type": "float",
+"value": 5.0
+}

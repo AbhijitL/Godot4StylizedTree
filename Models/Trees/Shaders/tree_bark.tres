@@ -1,0 +1,81 @@
+[gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://dqlwn6in43tli"]
+
+[ext_resource type="Texture2D" uid="uid://bvybvhyovyl50" path="res://Models/Trees/tree02_low_polyfbx_Tree_Normal.png" id="1_ude12"]
+[ext_resource type="Texture2D" uid="uid://66uqqlgcibax" path="res://Models/Trees/tree02_low_polyfbx_Tree_OcclusionRoughnessMetallic.png" id="2_2itgs"]
+[ext_resource type="Gradient" uid="uid://baqax0h82v53h" path="res://Models/Trees/Shaders/color_gradient.tres" id="3_qhqog"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_28dwe"]
+texture = ExtResource("1_ude12")
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_sv7yu"]
+default_input_values = [0, 1.0]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_b050t"]
+output_port_for_preview = 1
+expanded_output_ports = [0]
+texture = ExtResource("2_2itgs")
+texture_type = 1
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3h2d"]
+gradient = ExtResource("3_qhqog")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_wpdsg"]
+texture = SubResource("GradientTexture1D_e3h2d")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ujb10"]
+input_name = "fragcoord"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_6;
+uniform sampler2D tex_frg_5 : source_color;
+uniform sampler2D tex_frg_3;
+
+
+
+void fragment() {
+// Input:7
+	vec4 n_out7p0 = FRAGCOORD;
+
+
+// Texture2D:6
+	vec4 n_out6p0 = texture(tex_frg_6, vec2(n_out7p0.xy));
+
+
+// FloatFunc:4
+	float n_in4p0 = 1.00000;
+	float n_out4p0 = sign(n_in4p0);
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, UV);
+	float n_out5p1 = n_out5p0.r;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out6p0.xyz);
+	ROUGHNESS = n_out4p0;
+	AO = n_out5p1;
+	NORMAL_MAP = vec3(n_out3p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-1303.73, 158.913)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_28dwe")
+nodes/fragment/3/position = Vector2(-20, 820)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatFunc_sv7yu")
+nodes/fragment/4/position = Vector2(160, 280)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_b050t")
+nodes/fragment/5/position = Vector2(-60, 300)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_wpdsg")
+nodes/fragment/6/position = Vector2(-420, 100)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_ujb10")
+nodes/fragment/7/position = Vector2(-740, 180)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 9, 4, 0, 0, 3, 5, 1, 0, 6, 6, 0, 0, 0, 7, 0, 6, 0)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfbtndnc5i7ep"]
+
+[ext_resource type="PackedScene" uid="uid://corr8tu8wpvr2" path="res://Models/Trees/tree02_low_polyMerged.fbx" id="1_g7bbv"]
+[ext_resource type="Material" uid="uid://cyb2koivok3m8" path="res://Models/Trees/Shaders/m_treeBark.tres" id="2_jb0jr"]
+[ext_resource type="Material" uid="uid://cf1dcxknt1yfg" path="res://Models/Trees/Shaders/m_treeLeaves.tres" id="3_o5m5o"]
+
+[node name="tree02" instance=ExtResource("1_g7bbv")]
+
+[node name="Tree_low_poly" parent="RootNode" index="0"]
+surface_material_override/0 = ExtResource("2_jb0jr")
+surface_material_override/1 = ExtResource("3_o5m5o")

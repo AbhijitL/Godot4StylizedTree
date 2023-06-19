@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cyb2koivok3m8"]
+
+[ext_resource type="Shader" uid="uid://dqlwn6in43tli" path="res://Models/Trees/Shaders/tree_bark.tres" id="1_bx6tv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bx6tv")

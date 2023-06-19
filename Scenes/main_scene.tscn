@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://iyjbf3s7otdt"]
+
+[ext_resource type="PackedScene" uid="uid://dfbtndnc5i7ep" path="res://Models/Trees/tree_02.tscn" id="1_pgt3a"]
+[ext_resource type="Script" path="res://Scenes/rotate.gd" id="2_rrv1q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmrr8"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1dctt"]
+sky_material = SubResource("ProceduralSkyMaterial_pmrr8")
+
+[sub_resource type="Environment" id="Environment_l54eu"]
+background_mode = 2
+sky = SubResource("Sky_1dctt")
+tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 3.39
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ne7r6"]
+
+[node name="MainScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l54eu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.801776, 0.451033, -0.392077, 0, 0.656059, 0.75471, 0.597625, 0.605108, -0.526012, -8, 3, 0)
+shadow_enabled = true
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(5.68491, 0, 0, 0, 5.68491, 0, 0, 0, 5.68491, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ne7r6")
+
+[node name="tree02" parent="Objects" instance=ExtResource("1_pgt3a")]
+
+[node name="Center" type="Node3D" parent="Objects"]
+script = ExtResource("2_rrv1q")
+
+[node name="Camera3D" type="Camera3D" parent="Objects/Center"]
+transform = Transform3D(-0.994706, -0.00466558, -0.102657, 0, 0.998969, -0.0454012, 0.102763, -0.0451608, -0.99368, -1.34381, 2.91976, -8.86858)

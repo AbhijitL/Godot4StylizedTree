@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cf1dcxknt1yfg"]
+
+[ext_resource type="Shader" path="res://Models/Trees/Shaders/tree_leaves.gdshader" id="1_nf6j8"]
+[ext_resource type="Texture2D" uid="uid://dkyt68e1exbnc" path="res://Models/Trees/tree_Opacity-01.png" id="2_y266x"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nf6j8")
+shader_parameter/leavesColor = Color(0, 0.564706, 0, 1)
+shader_parameter/alphaThreshold = 0.1
+shader_parameter/offsetScale = 0.0061
+shader_parameter/fresnelStrength = 0.157
+shader_parameter/fresnelBlend = 0.998
+shader_parameter/fresnelColor = Color(0.909804, 0.478431, 0, 1)
+shader_parameter/deactiveGlobalVariation = false
+shader_parameter/clampTop = 1.0
+shader_parameter/clampBottom = 0.0
+shader_parameter/alphaTexture = ExtResource("2_y266x")
